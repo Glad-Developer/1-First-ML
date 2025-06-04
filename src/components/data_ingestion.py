@@ -39,7 +39,7 @@ class DataIngestion:
                 self.ingestion_config.test_data_path, index=False, header=True
             )
             logging.info(
-                "to_csv Train and Test data was Succesfully \n Ingestion of the data iss completed"
+                "to_csv Train and Test data was Succesfully, Ingestion of the data is completed"
             )
 
             return (
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     train_data, test_data = obj.intializing_data_ingestion(r'G:\1\Projects\1. First project\1-First-ML\NoteBooks\data\stud.csv')
 
     data_transformation = DataTransformation()
-    preprocessed_train_data, preprocessed_test_data, _ = data_transformation.initiate_data_transformation(
+    preprocessed_train_data, preprocessed_test_data, _ = data_transformation.intializing_data_transformation(
         train_data, test_data
     )
 

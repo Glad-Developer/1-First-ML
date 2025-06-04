@@ -62,7 +62,7 @@ class DataTransformation:
                 f"There is a problem with transforming data \n --- \n {e}", sys
             )
 
-    def initiate_data_transformation(self, train_path, test_path):
+    def intializing_data_transformation(self, train_path, test_path):
         try:
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
