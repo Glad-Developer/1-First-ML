@@ -1,15 +1,20 @@
 import os, sys
+from src.exception import CustomException
+from src.logger import logging
 import pandas as pd
 from src.exception import CustomException
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
-
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
 
 @dataclass
 class DataIngestionConfig:
-    train_data_path = os.join.path("artifacts", "train.csv")
-    test_data_path = os.join.path("artifacts", "test.csv")
-    raw_data_path = os.join.path("artifacts", "raw_data.csv")
+    train_data_path = os.path.join("artifacts", "train.csv")
+    test_data_path = os.path.join("artifacts", "test.csv")
+    raw_data_path = os.path.join("artifacts", "raw_data.csv")
 
 
 class DataIngestion:
@@ -44,18 +49,18 @@ class DataIngestion:
 
         except Exception as e:
             raise CustomException(
-                f"There is a problem with initializing_model_trainer: {e}"
+                f"There is a problem with intializing_data_ingestion: {e}"
             )
 
 
 if __name__ == "__main__":
     obj = DataIngestion()
-    train_data, test_data = obj.initiate_data_ingestion()
+    train_data, test_data = obj.intializing_data_ingestion(r'G:\1\Projects\1. First project\1-First-ML\NoteBooks\data\stud.csv')
 
     data_transformation = DataTransformation()
-    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(
+    preprocessed_train_data, preprocessed_test_data, _ = data_transformation.initiate_data_transformation(
         train_data, test_data
     )
 
     modeltrainer = ModelTrainer()
-    print(modeltrainer.initiate_model_trainer(train_arr, test_arr))
+    print(modeltrainer.initializing_model_trainer(preprocessed_train_data, preprocessed_test_data))
